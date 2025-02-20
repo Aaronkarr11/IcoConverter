@@ -14,12 +14,16 @@ namespace IcoConverter
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _inputURL;
-        private string _outputURL;
+        private string? _inputURL;
+        private string? _outputURL;
         private IConverterLogic _converterLogic;
+        public IcoConverterViewModel _icoConverterViewModel;
 
         public MainWindow()
         {
+            _icoConverterViewModel = new IcoConverterViewModel();
+            _icoConverterViewModel.Message = "Tst";
+            DataContext = _icoConverterViewModel;
             _converterLogic = new ConverterLogic();
             InitializeComponent();
         }
@@ -28,47 +32,32 @@ namespace IcoConverter
         {
             try
             {
-                pbStatus.Value = 0;
                 _inputURL = inutPath.Text;
                 _outputURL = outputPath.Text;
-
                 string newFilePath = String.Empty;
-                //byte[] bytes = File.ReadAllBytes(_inputURL);
                 var newFile = _converterLogic.ConvertImageToIcon(_inputURL, 64);
                 newFilePath = $"{_outputURL}\\{DateTime.Now.ToString("yyyyMMddhhmmss")}.ico";
-
-                RenderLoadingBar(100);
                 File.WriteAllBytes(newFilePath, newFile);
-
+                _icoConverterViewModel.Message = "All Done!";
             }
             catch (Exception ex)
             {
-
-                throw;
-            }
-
-        }
-
-        //pbStatus
-
-        private void RenderLoadingBar(int seed)
-        {
-            for (int i = 0; i < seed; i++)
-            {
-                pbStatus.Value++;
+                _icoConverterViewModel.Message = $"Error: {ex.Message}";
             }
         }
 
-        private void inutPath_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            inutPath.Text = "";
-        }
 
         private void inutPath_GotFocus(object sender, RoutedEventArgs e)
         {
             inutPath.Text = "";
         }
+
+        private void outputPath_GotFocus(object sender, RoutedEventArgs e)
+        {
+            outputPath.Text = "";
+        }
     }
+
 
 
 
