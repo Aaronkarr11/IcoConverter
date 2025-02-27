@@ -15,5 +15,23 @@ namespace IcoConverter
             return options;
         }
 
+        public static string DetermineType(string path)
+        {
+
+            if (path.ToLower().Contains(".jpg"))
+            {
+                return "JPG";
+            }
+            if (path.ToLower().Contains(".png"))
+            {
+                return "PNG";
+            }
+            return "Other";
+        }
+
+
     }
+
+
+
 }
