@@ -27,11 +27,10 @@ namespace IcoConverter
                         }
                         else
                         {
-                            image.Save(memoryStream, ImageFormat.Png);
+                            image.Save(memoryStream, ImageFormat.Jpeg);
                         }
                         // Use a 32x32 image as an icon
                         Bitmap bitmap = new Bitmap(image, new Size(size, size));
-                        //bitmap.Save(memoryStream, ImageFormat.Icon);
                         return memoryStream.ToArray();
                     }
                 }

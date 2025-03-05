@@ -20,6 +20,7 @@ namespace IcoConverter
             _converterLogic = converterLogic;
         }
 
+
         [RelayCommand]
         private void ConvertIcon()
         {
@@ -37,6 +38,7 @@ namespace IcoConverter
                     var newFile = _converterLogic.ConvertImageToIcon(MyModel.InputPath, Convert.ToInt32(MyModel.Size), fileType);
                     newFilePath = $"{MyModel.OutputPath}\\{DateTime.Now.ToString("yyyyMMddhhmmss")}.ico";
                     File.WriteAllBytes(newFilePath, newFile);
+                    MyModel.OutputPath = "All Done!";
                     MyModel.MyMessage = "All Done!";
                 }
             }

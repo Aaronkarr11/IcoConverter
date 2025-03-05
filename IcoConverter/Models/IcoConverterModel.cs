@@ -13,7 +13,6 @@ namespace IcoConverter
 
 
         public List<string> IcoSize { get; set; }
-        public string Message { get; set; }
         public string Size { get; set; }
         public string InputPath { get; set; }
         public string OutputPath { get; set; }
@@ -24,13 +23,6 @@ namespace IcoConverter
             get { return _MyMessage; }
             set { SetProperty(ref _MyMessage, value); }
         }
-
-        //private List<string> _IcoSize;
-        //public List<string> IcoSize
-        //{
-        //    get { return _IcoSize; }
-        //    set { SetProperty(ref _IcoSize, value); }
-        //}
 
         //private string _Size;
         //public string Size

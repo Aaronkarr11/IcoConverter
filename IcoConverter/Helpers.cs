@@ -17,6 +17,10 @@ namespace IcoConverter
 
         public static string DetermineType(string path)
         {
+            if (path == null)
+            {
+                return "Other";
+            }
 
             if (path.ToLower().Contains(".jpg"))
             {

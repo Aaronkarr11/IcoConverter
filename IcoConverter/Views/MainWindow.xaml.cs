@@ -8,8 +8,6 @@ namespace IcoConverter;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private string? _inputURL;
-    private string? _outputURL;
     private IConverterLogic _converterLogic;
     private IcoConverterViewModel _icoConverterViewModel;
 
