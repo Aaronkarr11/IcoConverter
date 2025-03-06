@@ -13,59 +13,39 @@ namespace IcoConverter
 {
     public class ConverterLogic : IConverterLogic
     {
-        public byte[] ConvertImageToIcon(string inputImagePath, int size, string fileType)
+        public string ConvertImageToIcon(string inputImagePath, int size, string outputImagePath)
         {
+            Dictionary<string, byte[]> result = new Dictionary<string, byte[]>();
             try
             {
-                using (Image image = Image.FromFile(inputImagePath))
+                MemoryStream imageStream = new MemoryStream();
+                Image image = Image.FromFile(inputImagePath);
+                using (FileStream fs = new FileStream(outputImagePath, FileMode.Create))
                 {
-                    using (MemoryStream memoryStream = new MemoryStream())
-                    {
-                        if (fileType == "PNG")
-                        {
-                            image.Save(memoryStream, ImageFormat.Png);
-                        }
-                        else
-                        {
-                            image.Save(memoryStream, ImageFormat.Jpeg);
-                        }
-                        // Use a 32x32 image as an icon
-                        Bitmap bitmap = new Bitmap(image, new Size(size, size));
-                        return memoryStream.ToArray();
-                    }
+                    SaveAsIcon(image, fs, size);
                 }
+                return $"All Done! Your icon file is saved to {outputImagePath}";
             }
             catch (Exception ex)
             {
-                return new byte[0];
-
+                return ex.Message;
             }
         }
 
-        public void ConvertImageToIcon(string inputImagePath, string outputIconPath)
+
+
+        private static void SaveAsIcon(Image img, Stream outputStream, int size)
         {
-            try
+            int width = size;
+            int height = size;
+
+            using (Bitmap bmp = new Bitmap(img, new Size(width, height)))
             {
-                using (Image image = Image.FromFile(inputImagePath))
-                {
-                    using (MemoryStream memoryStream = new MemoryStream())
-                    {
-                        image.Save(memoryStream, ImageFormat.Png);
-       
-                        using (FileStream fs = new FileStream(outputIconPath, FileMode.Create))
-                        {
-                            Bitmap bitmap = new Bitmap(image, new Size(32, 32));
-                            bitmap.Save(fs, ImageFormat.Icon);
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
+                Icon icon = Icon.FromHandle(bmp.GetHicon());
+                icon.Save(outputStream);
             }
         }
 
-        
+
     }
 }

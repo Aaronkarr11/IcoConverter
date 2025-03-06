@@ -6,9 +6,8 @@
         mc:Ignorable="d"
         Background="LightGray"
         Title="Ico Converter" Height="350" Width="800"
+        Icon="icon.ico"
         xmlns:ui="http://schemas.modernwpf.com/2019" ui:WindowHelper.UseModernWindowStyle="True">
-   
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -34,7 +33,8 @@
         <TextBox x:Name="outputPath" Grid.Column="1" Text="{Binding MyModel.OutputPath, Mode=TwoWay}" Grid.ColumnSpan="4" Grid.Row="1" FontSize="20" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Center" Width="520" GotFocus="outputPath_GotFocus"/>
         <Label Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Grid.Row="2" Content="Size:"/>
         <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding MyModel.IcoSize}" SelectedIndex="0" SelectedItem="{Binding MyModel.Size, Mode=TwoWay}" HorizontalAlignment="Left" Text="Size" VerticalAlignment="Center" Width="120"/>
-        <Label Content="{Binding MyModel.MyMessage, Mode=TwoWay}" Foreground="black" Grid.Column="1" Grid.ColumnSpan="4" Background="WhiteSmoke" Grid.Row="3"/>
+        <Label Grid.Column="0" Grid.ColumnSpan="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" FontSize="20" Grid.Row="3" Content="Message:"/>
+        <TextBox IsReadOnly="True" Text="{Binding MyModel.MyMessage, Mode=TwoWay}" FontSize="12" Foreground="black" Grid.ColumnSpan="6" Background="WhiteSmoke" Grid.Row="2" Margin="133,48,133,24" Grid.RowSpan="3"/>
 
     </Grid>
 </Window>

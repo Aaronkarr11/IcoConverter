@@ -24,35 +24,5 @@ namespace IcoConverter
             set { SetProperty(ref _MyMessage, value); }
         }
 
-        //private string _Size;
-        //public string Size
-        //{
-        //    get { return _Size; }
-        //    set { SetProperty(ref _Size, value); }
-        //}
-
-        //private string _InputPath;
-        //public string InputPath
-        //{
-        //    get { return _InputPath; }
-        //    set { SetProperty(ref _InputPath, value); }
-        //}
-
-        //private string _OutputPath;
-        //public string OutputPath
-        //{
-        //    get { return _OutputPath; }
-        //    set { SetProperty(ref _OutputPath, value); }
-        //}
-
-
-        //private string _MyMessage;
-        //public string MyMessage
-        //{
-        //    get { return _MyMessage; }
-        //    set { SetProperty(ref _MyMessage, value); }
-        //}
-
-
     }
 }

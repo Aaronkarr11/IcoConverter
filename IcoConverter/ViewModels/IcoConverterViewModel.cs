@@ -26,7 +26,7 @@ namespace IcoConverter
         {
             try
             {
-                string newFilePath = String.Empty;
+                string outputFilePath = String.Empty;
 
                 var fileType = Helpers.DetermineType(MyModel.InputPath);
                 if (fileType == "Other") 
@@ -35,11 +35,9 @@ namespace IcoConverter
                 }
                 else
                 {
-                    var newFile = _converterLogic.ConvertImageToIcon(MyModel.InputPath, Convert.ToInt32(MyModel.Size), fileType);
-                    newFilePath = $"{MyModel.OutputPath}\\{DateTime.Now.ToString("yyyyMMddhhmmss")}.ico";
-                    File.WriteAllBytes(newFilePath, newFile);
-                    MyModel.OutputPath = "All Done!";
-                    MyModel.MyMessage = "All Done!";
+                    outputFilePath = $"{MyModel.OutputPath}\\{DateTime.Now.ToString("yyyyMMddhhmmss")}.ico";
+                    var conversionResult = _converterLogic.ConvertImageToIcon(MyModel.InputPath, Convert.ToInt32(MyModel.Size), outputFilePath);
+                    MyModel.MyMessage = conversionResult;
                 }
             }
             catch (Exception ex)
