@@ -8,7 +8,7 @@ namespace IcoConverter
 {
    public static class  Helpers
     {
-
+        //Set build sizes
         public static List<string> BuildSizes()
         {
             List<string> options = ["32", "64"];
