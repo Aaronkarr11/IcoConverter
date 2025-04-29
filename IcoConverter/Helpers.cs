@@ -15,6 +15,7 @@ namespace IcoConverter
             return options;
         }
 
+        //This determines the type
         public static string DetermineType(string path)
         {
             if (path == null)
